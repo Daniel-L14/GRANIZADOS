@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>COOLRUSH — Pide y Personaliza</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+</head>
+<body>
+  <header class="main-header">
+    <div class="container flex justify-between items-center py-4 header-inner">
+      <a href="#home" class="logo flex items-center" aria-label="Granizados Delivery">
+        <img src="IMAGENES/LOGO.jpg" class="logo-img" />
+        <span class="logo-text">COOLRUSH</span>
+      </a>
+
+      <div class="header-actions">
+      <button id="menu-toggle" class="menu-toggle">☰</button>
+      </div>
+
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link" data-section="home">Inicio</a></li>
+          <li><a href="#explore" class="nav-link" data-section="explore">Sabores</a></li>
+          <li><a href="#create" class="nav-link" data-section="create">Crear Granizado</a></li>
+          <li><a href="#orders" class="nav-link" data-section="orders">Órdenes</a></li>
+          <li><a href="#profile" class="nav-link" data-section="profile">Mi Cuenta</a></li>
+          <li><a href="#auth" class="nav-link btn btn-primary" data-section="auth">Entrar / Registrar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app-content" class="app-content container">
+    <!-- HOME -->
+    <section id="home-section" class="page-section" role="region" aria-labelledby="home-heading">
+      <div class="hero-banner">
+        <h1 id="home-heading">Tu granizado, a tu manera</h1>
+        <p>Elige sabor, personaliza, agrega toppings y recíbelo en tu puerta. Rápido, fresco y delicioso.</p>
+        <div class="hero-ctas">
+          <!-- data-section coincide con script.js -->
+          <a href="#create" class="btn btn-primary nav-link" data-section="create">Crear Granizado</a>
+          <a href="#explore" class="btn btn-secondary nav-link" data-section="explore">Explorar Sabores</a>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card card">
+          <div class="icon-wrapper">🍧</div>
+          <h3>Personaliza al máximo</h3>
+          <p>Azúcar, tamaño, toppings y más — tu granizado como te guste.</p>
+        </article>
+        <article class="feature-card card">
+          <div class="icon-wrapper">🏍️</div>
+          <h3>Entrega rápida</h3>
+          <p>En zonas urbanas, llegada en menos de 45 minutos.</p>
+        </article>
+        <article class="feature-card card">
+          <div class="icon-wrapper">💳</div>
+          <h3>Paga como prefieras</h3>
+          <p>Tarjeta (demo) o efectivo a la entrega.</p>
+        </article>
+      </div>
+
+      <section class="newsletter-section card">
+        <h2>Recibe ofertas</h2>
+        <p>Suscríbete y recibe 10% en tu primer pedido.</p>
+        <form id="newsletter-form" class="newsletter-form" novalidate>
+          <input type="email" id="newsletter-email" placeholder="tu.email@ejemplo.com" required>
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+        </form>
+        <div id="newsletter-message" class="message-area" role="status" aria-live="polite"></div>
+      </section>
+    </section>
+
+    <!-- EXPLORE / SABORES -->
+    <section id="explore-section" class="page-section" role="region" aria-labelledby="explore-heading">
+      <h2 id="explore-heading" class="section-title">Sabores Populares</h2>
+      <div id="events-grid" class="events-grid grid-3-cols"></div>
+    </section>
+
+    <!-- CREATE WIZARD -->
+    <section id="create-section" class="page-section" role="region" aria-labelledby="create-heading">
+      <h2 id="create-heading" class="section-title">Crear Granizado</h2>
+      <div class="wizard card">
+        <div id="wizardSteps" class="wizard-steps"></div>
+        <div id="wizardBody" class="wizard-body"></div>
+        <div class="wizard-actions">
+          <button id="prevStep" class="btn btn-secondary">Atrás</button>
+          <button id="nextStep" class="btn btn-primary">Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT DETAIL / VIEW -->
+    <section id="event-detail-section" class="page-section" role="region" aria-labelledby="event-detail-heading"></section>
+
+    <!-- ORDERS -->
+    <section id="orders-section" class="page-section" role="region" aria-labelledby="orders-heading">
+      <h2 id="orders-heading" class="section-title">Mis Órdenes</h2>
+      <div id="ordersList" class="list"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile-section" class="page-section" role="region" aria-labelledby="profile-heading">
+      <h2 id="profile-heading" class="section-title">Mi Cuenta</h2>
+      <div id="profile-content" class="profile-content card"></div>
+    </section>
+
+    <!-- AUTH (login/register) -->
+    <section id="auth-section" class="page-section" role="region" aria-labelledby="auth-heading">
+      <h2 id="auth-heading" class="section-title">Acceder o Registrarse</h2>
+      <div class="auth-forms">
+        <div class="form-container card">
+          <h3>Login</h3>
+          <form id="login-form" novalidate>
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input id="login-email" type="email" required>
+              <p id="error-login-email" class="error-message"></p>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Contraseña</label>
+              <input id="login-password" type="password" required>
+              <p id="error-login-password" class="error-message"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            <div id="login-message" class="message-area"></div>
+          </form>
+        </div>
+
+        <div class="form-container card">
+          <h3>Registro</h3>
+          <form id="register-form" novalidate>
+            <div class="form-group">
+              <label for="register-name">Nombre</label>
+              <input id="register-name" type="text" required minlength="3">
+              <p id="error-register-name" class="error-message"></p>
+            </div>
+            <div class="form-group">
+              <label for="register-email">Email</label>
+              <input id="register-email" type="email" required>
+              <p id="error-register-email" class="error-message"></p>
+            </div>
+            <div class="form-group">
+              <label for="register-password">Contraseña</label>
+              <input id="register-password" type="password" required minlength="6">
+              <p id="error-register-password" class="error-message"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+            <div id="register-message" class="message-area"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container flex flex-col md-flex-row gap-8 py-8">
+      <section class="footer-info flex-1">
+        <h3>COOLRUSH</h3>
+        <p>Frescura, sabor y entrega rápida. Pide tu granizado en minutos.</p>
+      </section>
+      <nav class="footer-nav flex-1">
+        <h3>Enlaces</h3>
+        <ul class="footer-list">
+          <li><a href="#home" data-section="home">Inicio</a></li>
+          <li><a href="#explore" data-section="explore">Sabores</a></li>
+          <li><a href="#create" data-section="create">Crear Granizado</a></li>
+        </ul>
+      </nav>
+      <section class="footer-contact flex-1">
+        <h3>Contacto</h3>
+        <p>Email: soporte@granizados.com</p>
+        <p>Tel: 311 555 1234</p>
+      </section>
+    </div>
+    <div class="footer-bottom text-center py-4">
+      <p>© <span id="current-year"></span> COOLRUSH. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
